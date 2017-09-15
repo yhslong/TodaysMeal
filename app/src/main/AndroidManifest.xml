@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RegActivity" />
+        <activity android:name=".PostActivity" />
+        <activity android:name=".TasteActivity" />
+        <activity android:name=".TasteRegActivity"></activity>
     </application>
 
 </manifest>
