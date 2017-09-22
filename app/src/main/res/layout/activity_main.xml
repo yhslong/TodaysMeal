@@ -2,32 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="100"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:background="@drawable/today"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context="org.eattoday.todaysmeal.MainActivity">
 
-
-    <EditText
-        android:layout_width="200dp"
-
-        android:layout_height="wrap_content"
-        android:layout_weight="50"
-        android:id="@+id/editText"
-        android:text="ID" />
-
-    <Button
-        android:layout_width="100dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="50"
-        android:text="Log In "
-        android:id="@+id/button" />
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <EditText
+            android:id="@+id/editText"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="70dp"
+            android:layout_weight="5"
+            android:text="이용자ID" />
 
 
-    출처: http://swalloow.tistory.com/58 [MyCloud]
+        <Button
+            android:id="@+id/button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@color/login_btn_bg"
+            android:text="Log In " />
+
+    </LinearLayout>
 
 
 </LinearLayout>

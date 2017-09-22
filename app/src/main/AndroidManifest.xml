@@ -19,7 +19,8 @@
         <activity android:name=".RegActivity" />
         <activity android:name=".PostActivity" />
         <activity android:name=".TasteActivity" />
-        <activity android:name=".TasteRegActivity"></activity>
+        <activity android:name=".TasteRegActivity" />
+        <activity android:name=".PostDetailActivity"></activity>
     </application>
 
 </manifest>

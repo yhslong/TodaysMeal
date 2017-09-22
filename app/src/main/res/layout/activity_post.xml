@@ -4,20 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.eattoday.todaysmeal.PostActivity">
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/textView"
+    tools:context="org.eattoday.todaysmeal.PostActivity">
+<RelativeLayout
+    android:id="@+id/top"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+   <!-- android:background="@drawable/recommend"> -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="추천" />
+        android:layout_height="100dp"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/good"
+             />
+
+        <TextView
+            android:layout_width="307dp"
+            android:layout_height="match_parent"
+            android:background="@color/login_btn_bg"
+            android:gravity="center"
+            android:text="추천해주세요~"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+       <!-- <EditText
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:hint="Input your name"
+            android:layout_height="50dp" /> -->
+    </LinearLayout>
+</RelativeLayout>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView">
+        android:layout_below="@+id/top">
     </ListView>
 
 </RelativeLayout>
