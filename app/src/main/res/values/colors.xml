@@ -3,6 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="login_btn_bg2">#adc0dc</color>
+    <color name="login_btn_bg3">#cfbfe2</color>
+    <color name="edit_col">#e9ddef</color>
+    <color name="edit_col">#bd93d2</color>
 
     <!-- 로그인 색상 -->
     <color name="login_btn_bg">#569df4</color>

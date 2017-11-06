@@ -72,9 +72,8 @@ public class PostActivity extends AppCompatActivity {
         itemList.add(new Item(R.drawable.angry,"ID:Angry","오늘 A랑 싸워서 화가나요"));
         itemList.add(new Item(R.drawable.happy, "ID:Happy", "오늘 선물을 받아서 기분이 좋아요"));
         itemList.add(new Item(R.drawable.rough, "ID:Rough", "파이터 가기전.."));
-        itemList.add(new Item(R.drawable.sad, "ID:Sad", "슬퍼요"));
-        itemList.add(new Item(R.drawable.timid, "ID:Timid", "오늘 실수를..."));
-
+        itemList.add(new Item(R.drawable.sad, "ID:Sad", "감기가 걸렸어요 .. ㅜㅜ"));
+        itemList.add(new Item(R.drawable.timid, "ID:Timid", "오늘 실수를...ㅠㅠ"));
        /* String[] items ={"item1","item2","item3","item4","item5"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(PostActivity.this,android.R.layout.simple_list_item_1,items); */
         itemAdpater = new ItemAdapter(PostActivity.this, R.layout.list_item,
@@ -85,6 +84,9 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(),PostDetailActivity.class);
+                intent.putExtra("image",itemList.get(position).image);
+                intent.putExtra("title",itemList.get(position).title);
+                intent.putExtra("item",itemList.get(position).text);
                 startActivity(intent);
 
             }

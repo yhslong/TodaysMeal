@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="false"
     android:background="@drawable/today"
-    android:orientation="vertical"
-    android:weightSum="1"
+    android:orientation="horizontal"
     tools:context="org.eattoday.todaysmeal.MainActivity">
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/id"
+        android:layout_centerHorizontal="true"
+        android:hint="ID"
+        android:layout_marginTop="190dp"/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:layout_below="@+id/id"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:text="Log in"
+        android:id="@+id/longinButton"
+        android:textAllCaps="false"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/password"
+        android:layout_toLeftOf="@+id/signupButton"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="55dp"
+        android:text="Sign up"
+        android:id="@+id/signupButton"
+        android:textAllCaps="false"
+        android:layout_alignTop="@+id/longinButton"
+        android:layout_alignRight="@+id/password"/>
 
-    <LinearLayout
+
+  <!--  <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
@@ -38,7 +69,7 @@
             android:background="@color/login_btn_bg"
             android:text="Log In " />
 
-    </LinearLayout>
+    </LinearLayout> -->
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -2,14 +2,13 @@ package org.eattoday.todaysmeal;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -24,72 +23,46 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
-public class PostDetailActivity extends AppCompatActivity {
-
-    String id;
-    String alias;
-    String image_no;
-
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_detail);
+        setContentView(R.layout.activity_login);
 
-        // 다른 Activity 에서 전달해준 Intent 를 받는다
-        TextView int_alias = (TextView) findViewById(R.id.alias);
-        Intent intent = getIntent();
-        id = intent.getStringExtra("id");
-        alias = intent.getStringExtra("alias");
-       // Toast.makeText(getApplicationContext(),alias+"님이 입장하셨습니다.", Toast.LENGTH_LONG).show();
-        int_alias.setText(alias);
-        int_alias.setFocusable(false);
-        int_alias.setClickable(false);
+ //액티비티 전환
+        Button button1 = (Button) findViewById(R.id.signupButton);
+        button1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //  Toast.makeText(getApplicationContext(), "액티비티 전환", Toast.LENGTH_LONG).show();
 
-//        final RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup1);
-//        Button b = (Button)findViewById(R.id.button1);
-//        b.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int radio_id = rg.getCheckedRadioButtonId();
-//                Toast.makeText(getApplicationContext(),radio_id +"이미지번호", Toast.LENGTH_LONG).show();
-//                //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.
-//                RadioButton rb = (RadioButton) findViewById(radio_id);
-//                Toast.makeText(getApplicationContext(),rb.getText().toString()+"이미지번호", Toast.LENGTH_LONG).show();
-//                image_no  = rb.getText().toString();
-//            //    tv.setText("결과: " + rb.getText().toString());
-//            } // end onClick()
-//        });  // end Listener
+                // 액티비티 전환 코드
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
 
+        });
     }
 
-    // 글씨기 등록
-    public void postit(View view) {
-        RadioGroup rg = (RadioGroup)findViewById(R.id.radioGroup1);
-        int radio_id = rg.getCheckedRadioButtonId();
-        RadioButton rb = (RadioButton) findViewById(radio_id);
 
-        EditText editText = (EditText)findViewById(R.id.editText);
-        new Postit().execute(
-                "http://192.168.0.18:52273/post",
-                id.toString(),
-                alias.toString(),
-                rb.getText().toString(),
-                editText.getText().toString());
+    public void login(View view) {
+        EditText userIdText = (EditText)findViewById(R.id.user_id);
+        EditText passwordText = (EditText)findViewById(R.id.password);
+        new Login().execute(
+                "http://192.168.0.18:52273/user/login",
+                userIdText.getText().toString(),
+                passwordText.getText().toString());
     }
-
-    class Postit extends AsyncTask<String,String,String> {
-        ProgressDialog dialog = new ProgressDialog(PostDetailActivity.this);
+    class Login extends AsyncTask<String,String,String> {
+        ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
         @Override
         protected String doInBackground(String... params) {
             StringBuilder output = new StringBuilder();
             try {
                 URL url = new URL(params[0]);
                 JSONObject postDataParams = new JSONObject();
-                postDataParams.put("user_real_id", params[1]);
-                postDataParams.put("alias", params[2]);
-                postDataParams.put("image_no", params[3]);
-                postDataParams.put("message", params[4]);
+                postDataParams.put("user_id", params[1]);
+                postDataParams.put("password", params[2]);
 
                 HttpURLConnection conn = (HttpURLConnection)url.openConnection();
                 if (conn != null) {
@@ -120,7 +93,7 @@ public class PostDetailActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog.setMessage("게시판 등록 중...");
+            dialog.setMessage("로그인 중...");
             dialog.show();
         }
         @Override
@@ -129,16 +102,21 @@ public class PostDetailActivity extends AppCompatActivity {
             dialog.dismiss();
             try {
                 JSONObject json = new JSONObject(s);
-                if (json.getBoolean("result") == true) {//글씨기 성공
-                    Toast.makeText(PostDetailActivity.this,
-                            "게시 성공되었습니다. 감사합니다.",
-                            Toast.LENGTH_SHORT).show();
-                  //  Intent intent = new Intent(PostDetailActivity.this, LoginActivity.class);
-                  //  startActivity(intent);
-                  //  finish();
+                if (json.getBoolean("result") == true) {//로그인 성공
+                    String token = json.getString("token");
+                    SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("token", token);
+                    editor.commit();
+                    Intent intent = new Intent(LoginActivity.this, RegActivity.class);
+                 //   Toast.makeText(getApplicationContext(), json.getInt("id"), Toast.LENGTH_LONG).show();
+                    intent.putExtra("id", json.getString("id"));
+                    intent.putExtra("alias", json.getString("alias"));
+                    startActivity(intent);
+                    finish();
                 } else {//로그인 실패
-                    Toast.makeText(PostDetailActivity.this,
-                            "게시 성공하지 못했습니다.",
+                    Toast.makeText(LoginActivity.this,
+                            "아이디가 없거나 암호가 틀렸습니다.",
                             Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) { e.printStackTrace(); }
