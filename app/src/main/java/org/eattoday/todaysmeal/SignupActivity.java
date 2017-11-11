@@ -36,7 +36,7 @@ public class SignupActivity extends AppCompatActivity {
         EditText passwordText = (EditText)findViewById(R.id.password);
         EditText aliasText = (EditText)findViewById(R.id.alias);
         new Signup().execute(
-                "http://192.168.0.18:52273/user/signup",
+                "http://172.16.2.17:52273/user/signup",
                 userIdText.getText().toString(),
                 passwordText.getText().toString(),
                 aliasText.getText().toString());
@@ -114,7 +114,7 @@ public class SignupActivity extends AppCompatActivity {
         EditText passwordText = (EditText)findViewById(R.id.password);
 
         new Withdraw().execute(
-                "http://192.168.0.18:52273/user/withdraw",
+                "http://172.16.2.17:52273/user/withdraw",
                 userIdText.getText().toString(),
                 passwordText.getText().toString());
     }

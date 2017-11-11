@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText userIdText = (EditText)findViewById(R.id.user_id);
         EditText passwordText = (EditText)findViewById(R.id.password);
         new Login().execute(
-                "http://192.168.0.18:52273/user/login",
+                "http://172.16.2.17:52273/user/login",
                 userIdText.getText().toString(),
                 passwordText.getText().toString());
     }

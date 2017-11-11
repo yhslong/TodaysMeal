@@ -16,9 +16,9 @@ import java.net.URLDecoder;
 
 public class PutUpActivity extends AppCompatActivity {
     //172.16.2.17 http://192.168.0.18
-    private static final String HOME_URL = "http://192.168.0.18:9000/#!/";
-    private static final String SIGNUP_URL = "http://192.168.0.18:9000/#!/signup";
-    private static final String USERLIST_URL = "http://192.168.0.18:9000/#!/user/list";
+    private static final String HOME_URL = "http://172.16.2.17:9000/#!/";
+    private static final String SIGNUP_URL = "http://172.16.2.17:9000/#!/signup";
+    private static final String USERLIST_URL = "http://172.16.2.17:9000/#!/user/list";
     private WebView webView = null;
 
     final class WebBrowserClient extends WebChromeClient {

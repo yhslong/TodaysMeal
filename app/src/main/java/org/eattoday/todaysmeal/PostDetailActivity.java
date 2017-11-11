@@ -71,7 +71,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
         EditText editText = (EditText)findViewById(R.id.editText);
         new Postit().execute(
-                "http://192.168.0.18:52273/post",
+                "http://172.16.2.17:52273/post",
                 id.toString(),
                 alias.toString(),
                 rb.getText().toString(),

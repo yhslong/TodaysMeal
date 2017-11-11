@@ -96,7 +96,7 @@
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="가   입"
-                android:background="@color/login_btn_bg3"
+                android:background="@color/sign_col"
                 android:textAlignment="center"
                 android:textSize="15dp"
                 android:onClick="signup"/>
@@ -108,7 +108,7 @@
                 <Button
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:background="@color/login_btn_bg3"
+                    android:background="@color/sign_col"
                     android:textSize="15dp"
                     android:textAlignment="center"
                     android:text="탈   퇴"
